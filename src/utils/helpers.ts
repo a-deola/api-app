@@ -35,5 +35,7 @@ export function getDay() {
 }
 
 export function getUTC() {
-  return new Date().getUTCDate();
+  const now = new Date();
+  const utcString = now.toUTCString();
+  return utcString;
 }
