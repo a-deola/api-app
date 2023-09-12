@@ -34,8 +34,21 @@ export function getDay() {
   }
 }
 
+export function parseDigit(digit: number) {
+  return digit < 10 ? `0${digit}` : digit;
+}
+
 export function getUTC() {
   const now = new Date();
-  const utcString = now.toUTCString();
-  return utcString;
+
+  const utcFullYear = now.getUTCFullYear();
+  const utcDate = parseDigit(now.getUTCDate());
+  const utcHours = parseDigit(now.getUTCHours());
+  const utcMonth = parseDigit(now.getUTCMonth() + 1);
+  const utcMinutes = parseDigit(now.getUTCMinutes());
+  const utcSeconds = parseDigit(now.getUTCSeconds());
+
+  const time = `${utcFullYear}-${utcMonth}-${utcDate}T${utcHours}:${utcMinutes}:${utcSeconds}Z`;
+
+  return time;
 }
